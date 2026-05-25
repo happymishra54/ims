@@ -8,6 +8,10 @@ use App\Http\Controllers\LedgerController;
 use App\Models\Product;
 use App\Http\Controllers\LoginController;
 
+Route::get('/', function () {
+        return redirect('/login');
+    });
+
 Route::get('/dashboard', function () {
 
     $products = Product::latest()
@@ -48,3 +52,14 @@ Route::post('/signup', [LoginController::class,'signup']);
 
 Route::post('/logout', [LoginController::class,'logout'])
         ->name('logout');
+
+
+// adding this temporary for render
+
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/migrate', function () {
+    Artisan::call('migrate', ['--force' => true]);
+
+    return 'Migration completed';
+});
