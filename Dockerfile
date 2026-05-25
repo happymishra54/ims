@@ -12,7 +12,7 @@ COPY . .
 
 RUN composer install
 
-RUN php artisan key:generate
+
 
 EXPOSE 10000
 
