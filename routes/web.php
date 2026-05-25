@@ -63,3 +63,11 @@ Route::get('/migrate', function () {
 
     return 'Migration completed';
 });
+
+
+
+Route::get('/migrate', function () {
+    Artisan::call('migrate', ['--force' => true]);
+
+    return Artisan::output();
+});
