@@ -144,63 +144,7 @@ class ProductController extends Controller
         return view('product.index', compact('products'));
     }
 
-    // making separate functions for flutter app
-
-    public function apiIndex()
-    {
-        return response()->json(Product::all());
-    }
-
-    public function apiStore(Request $request)
-    {
-        $product = Product::create([
-
-            'name' => $request->name,
-
-            'bought_price' =>
-                $request->bought_price,
-
-            'selling_price' =>
-                $request->selling_price,
-        ]);
-
-        return response()->json($product);
-    }
-
-    public function apiShow($id)
-    {
-        return response()->json(
-            Product::find($id)
-        );
-    }
-
-    public function apiUpdate(Request $request, $id)
-    {
-        $product = Product::findOrFail($id);
-
-        $product->update([
-            'name' => $request->name,
-            'remarks' => $request->remarks,
-            'bought_price' => $request->bought_price,
-            'margin' => $request->margin,
-            'selling_price' => $request->selling_price,
-            'quantity' => $request->quantity,
-            'unit' => $request->unit,
-        ]);
-
-        return response()->json([
-            'message' => 'Updated successfully'
-        ]);
-    }
-
-    public function apiDelete($id)
-    {
-        Product::destroy($id);
-
-        return response()->json([
-            'message' => 'Deleted'
-        ]);
-    }
+    
 
 
 }
