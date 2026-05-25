@@ -1,0 +1,135 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* App layout (dashboard.blade.php) */
+:root {
+    --app-bg: #f6f7fb;
+    --app-surface: #ffffff;
+    --app-text: #1f2937;
+    --app-muted: #6b7280;
+    --app-border: rgba(17, 24, 39, 0.08);
+    --app-primary: #2563eb;
+    --app-primary-600: #1d4ed8;
+    --app-sidebar: #0b1220;
+    --app-sidebar-2: #0f172a;
+    --app-sidebar-text: rgba(255, 255, 255, 0.88);
+    --app-sidebar-muted: rgba(255, 255, 255, 0.62);
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: var(--app-bg) !important;
+    color: var(--app-text);
+}
+
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+}
+
+.app-sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, var(--app-sidebar) 0%, var(--app-sidebar-2) 100%);
+    color: var(--app-sidebar-text);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: auto;
+}
+
+.app-sidebar__brand {
+    padding: 18px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.app-sidebar__logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(37, 99, 235, 0.18);
+    border: 1px solid rgba(37, 99, 235, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #93c5fd;
+}
+
+.app-sidebar__title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.app-sidebar__title strong {
+    font-size: 14px;
+}
+
+.app-sidebar__title span {
+    font-size: 12px;
+    color: var(--app-sidebar-muted);
+}
+
+.app-sidebar__nav {
+    padding: 12px;
+}
+
+.app-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    color: var(--app-sidebar-text);
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background-color .15s ease, border-color .15s ease;
+    margin-bottom: 6px;
+}
+
+.app-nav-link:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.app-nav-link--active {
+    background: rgba(37, 99, 235, 0.18);
+    border-color: rgba(37, 99, 235, 0.35);
+}
+
+.app-nav-link svg {
+    flex: 0 0 auto;
+}
+
+.app-sidebar__footer {
+    padding: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--app-sidebar-muted);
+    font-size: 12px;
+}
+
+.app-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.app-header {
+    position: sticky;
+    top: 0;
