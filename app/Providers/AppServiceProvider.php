@@ -22,14 +22,26 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {
-        view::share('productCount', Product::count());
-        view::share('customerCount', Customer::count());
-        view::share('balanceCount', Customer::with('ledger')->get()->map(function ($customer) {
-            return $customer->ledger->sum('credit') - $customer->ledger->sum('debit');
-        })->sum());
-        view::share('outstandingCount', Supplier::with('ledger')->get()->map(function ($supplier) {
-            return $supplier->ledger->sum('debit') - $supplier->ledger->sum('credit');
-        })->sum());
+{
+    if (\Schema::hasTable('products')) {
+
+        view()->share('productCount', Product::count());
+
+        view()->share('customerCount', Customer::count());
+
+        view()->share(
+            'balanceCount',
+            Customer::with('ledger')->get()->map(function ($customer) {
+                return $customer->ledger->sum('credit') - $customer->ledger->sum('debit');
+            })->sum()
+        );
+
+        view()->share(
+            'outstandingCount',
+            Supplier::with('ledger')->get()->map(function ($supplier) {
+                return $supplier->ledger->sum('debit') - $supplier->ledger->sum('credit');
+            })->sum()
+        );
     }
+}
 }
