@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
 {
-    if (\Schema::hasTable('products')) {
+    try {
 
         view()->share('productCount', Product::count());
 
@@ -42,6 +42,9 @@ class AppServiceProvider extends ServiceProvider
                 return $supplier->ledger->sum('debit') - $supplier->ledger->sum('credit');
             })->sum()
         );
+
+    } catch (\Exception $e) {
+        // Ignore database errors during deployment
     }
 }
 }
